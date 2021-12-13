@@ -19,8 +19,21 @@ pipeline{
         }
 stage ('send mail') {
             steps {
-            mail bcc: '', body: 'build is finished', cc: '', from: '', replyTo: '', subject: '', to: 'cynthiafre1989@yahoo.com'
+            mail bcc: '', body: 'build is finished', cc: '', from: '', replyTo: '', subject: 'done', to: 'cynthiafre1989@yahoo.com'
             }
         }   
 }
+post
+    failure {
+    sh 'the build failed'
+    }
+    success {
+    sh 'the build is successful'
+    }
+    always {
+    sh 'the build as completed'
+    }
 }
+
+   
+
